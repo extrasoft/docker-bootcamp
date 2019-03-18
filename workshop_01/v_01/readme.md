@@ -1,4 +1,4 @@
-/* V01: การรัน WORDPRESS + MYSQL:5.7 + PHPMYADMIN แบบปกติ ใช้ volume ที่ docker สร้างให้เฉพาะ */
+V01: การรัน WORDPRESS + MYSQL:5.7 + PHPMYADMIN แบบปกติ ใช้ volume ที่ docker สร้างให้เฉพาะ
 
 // PULL WORDPRESS + MYSQL:5.7 + PHPMYADMIN
     docker pull wordpress
