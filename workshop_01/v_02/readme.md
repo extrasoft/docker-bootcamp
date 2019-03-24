@@ -1,4 +1,4 @@
-V01: การรัน WORDPRESS + MYSQL:5.7 + PHPMYADMIN แบบใช้ volume ที่สร้างขึ้นเอง
+V02: การรัน WORDPRESS + MYSQL:5.7 + PHPMYADMIN แบบใช้ volume ที่สร้างขึ้นเอง
 
 // PULL WORDPRESS + MYSQL:5.7 + PHPMYADMIN
     docker pull wordpress
