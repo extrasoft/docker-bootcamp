@@ -10,7 +10,7 @@ console.log(url);
 //เรียกใช้ express
 const app = express();
 
-app.get('/',(req, res) => {
+app.get('/api/products',(req, res) => {
     MongoClient.connect(url, (err, client) => {
         if(err) throw err;
         console.log('Database connected');
@@ -23,7 +23,10 @@ app.get('/',(req, res) => {
             if(err) throw err;
 
             // response
-            res.send(result);
+            res.status(200).send(result);
+
+            // close connection เพื่อป้องกันไม่ให้ connection เต็ม
+            client.close();
         })
     })
 });
