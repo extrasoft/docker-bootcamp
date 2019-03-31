@@ -10,7 +10,24 @@ console.log(url);
 //เรียกใช้ express
 const app = express();
 
+//Middleware
+app.use((req, res, next) => {
+    // Set ให้เว็บไหนสามารถเรียก api นี้ได้บ้าง
+    // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:30001')
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+    // Set ให้ Method ไหนสามารถเรียก api นี้ได้บ้าง
+    res.setHeader('Access-Control-Allow-Method', 'GET, PUT, POST, DELETE');
+
+    // Set ให้ Request Header ไหนสามารถเรียก api นี้ได้บ้าง
+    // ตอนที่ react ส่ง api เป็น ajax มา จะส่ง request 2 ตัวด้านล่างมาด้วยเราจึงต้องอนุญาติ
+    res.setHeader('Access-Control-Allow-Header', 'X-Requested-With, Content-type');
+
+    next();
+})
+
 app.get('/api/products',(req, res) => {
+
     MongoClient.connect(url, (err, client) => {
         if(err) throw err;
         console.log('Database connected');
@@ -31,6 +48,6 @@ app.get('/api/products',(req, res) => {
     })
 });
 
-app.listen(3000, () => {
-    console.log('Server Listening on port 3000');
+app.listen(8000, () => {
+    console.log('Server Listening on port 8000');
 });

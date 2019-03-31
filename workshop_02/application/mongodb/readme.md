@@ -24,5 +24,7 @@
     docker network connect shoppers <mongodb_container_name>
 **รัน node container จาก image ที่ได้ทำการ build ให้เชื่อมต่อกับ mongo แล้ว**
     docker run -d --name <node_container_name> -p <source_port>:<destination_port> -v /usr/app/node_modules -v /home/thanapon/Desktop/learning/docker-bootcamp/workshop_02/application/nodejs:/usr/app -e DATABASE_USERNAME=<username_from_Dockerfile> -e DATABASE_PASSWORD=<password_from_Dockerfile> -e DATABASE_HOST=<host_from_mongodb_container_name> --network shoppers <repository>:<tag>
+**ตัวอย่าง**
+    docker run -d --name mynodejsapp -p 3000:3000 -v /usr/app/node_modules -v /home/thanapon/Desktop/learning/docker-bootcamp/workshop_02/application/nodejs:/usr/app -e DATABASE_USERNAME=admin -e DATABASE_PASSWORD=1111 -e DATABASE_HOST=mymongodb --network shoppers mynodejsapp:1.1
 // การดูข้อมูลของ container ที่เราเขียน console.log() ไว้
     docker logs <container_namec>

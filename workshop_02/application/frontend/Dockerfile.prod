@@ -1,0 +1,25 @@
+################### REACT ####################
+# BASE IMAGE
+FROM node:alpine as builder
+
+WORKDIR /usr/app
+
+COPY ./package.json ./
+RUN npm install
+COPY ./ ./
+
+# build static file
+RUN npm run build
+
+CMD ["npm", "run", "start"]
+
+
+################### WEBSERVER NGINX ####################
+FROM nginx
+
+# เปิด port 80 ให้คนอื่นเข้ามา
+EXPOSE 80
+
+# --from= หมายถึงการอ้างอิงไปยัง image อื่นๆ
+# /usr/share/nginx/html คือ โฟลเดอร์เว็บของ nginx
+dCOPY --from=builder /usr/app/build /usr/share/nginx/html
