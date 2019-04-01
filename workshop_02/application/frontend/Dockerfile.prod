@@ -22,4 +22,4 @@ EXPOSE 80
 
 # --from= หมายถึงการอ้างอิงไปยัง image อื่นๆ
 # /usr/share/nginx/html คือ โฟลเดอร์เว็บของ nginx
-dCOPY --from=builder /usr/app/build /usr/share/nginx/html
+COPY --from=builder /usr/app/build /usr/share/nginx/html

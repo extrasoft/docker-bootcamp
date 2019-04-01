@@ -64,3 +64,18 @@ docker exec -it <container> <command>
 docker exec -it <container> sh
 docker exec -it <container> redis-cli
   -it หมายถึงทำให้เราสามารถ  input และ output ออกทางหน้าจอ terminal ได้
+
+
+// BUILD IMAGE ที่ Dockerfile ไม่ได้ใช้ชื่อนี้
+docker build -f <dockerfile_name> . -t <repository>:<tag>
+
+// DOCKER-COMPOSE CREATE CONTAINER NO START
+docker-compose up --no-start
+
+// DOCKER-COMPOSE CHECK CONFIG
+docker-compose config
+docker-compose config -q
+
+
+// DOCKER-COMPOSE REBUILD
+docker-compose up -d --build

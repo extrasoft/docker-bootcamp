@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  #container name
+  db:
+    image: mysql:5.7
+    networks: 
+      - wordpress
+    # docker run --network wordpress
+    volumes:
+      - ./mysql:/var/lib/mysql
+    # docker run -v db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1111
+    # docker run -e MYSQL_ROOT_PASSWORD=1111
+  wordpress:
+    # ทำงานหลังจาก container ตัวไหนบ้าง
+    depends_on:
+      - db
+    image: wordpress
+    networks:
+      - wordpress
+    volumes:
+      - ./wordpress:/var/www/html
+    ports: 
+      - 889:80
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: 1111
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin/phpmyadmin
+    networks:
+      - wordpress
+    restart: always
+    ports:
+      - 8889:80  
+
+# volumes:
+#   db_data:
+
+networks:
+  wordpress:
